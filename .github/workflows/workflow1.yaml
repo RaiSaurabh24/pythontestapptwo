@@ -1,0 +1,36 @@
+name: Python web app
+
+on:
+  [push]
+
+env:
+  AZURE_WEBAPP_NAME: 'provisioned-python-app' 
+  AZURE_WEBAPP_PACKAGE_PATH: '.' 
+  SONAR_HOST_URL: 'http://13.68.189.117:8080'
+  AZURE_GROUP_NAME: 'toolkit-template-generated-rgp'
+
+
+jobs:
+          
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+  
+    - name: Test cases
+      run: |
+        pip install pytest
+        pip install coverage
+        coverage run -m pytest
+        coverage report -m
+        
