@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: pythontestapp
+  annotations:
+    github.com/project-slug: RaiSaurabh24/pythontestapptwo
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: website
+  lifecycle: production
+  owner: RaiSaurabh24
